@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>{% block title %}Chat{% endblock %}</title>
+
+</head>
+
+<body class="home">
+    <h1>BIENVENIDO {{ session['usuario']['nombre'] }}</h1>
+    <button><a href="/layout">Salir</a></button>
+    <div class="chat-container">
+        <div class="chat-header">
+            Chat Room
+        </div>
+        <div class="chat-messages">
+        </div>
+        <div class="chat-input">
+            <input type="text" placeholder="Type your message...">
+            <button>Send</button>
+        </div>
+    </div>
+</body>
+
+</html>

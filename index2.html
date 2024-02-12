@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mostrar Texto y Código en sus Etiquetas Respectivas</title>
+</head>
+<body>
+
+<p id="textoContainer"></p>
+<pre><code id="codigoContainer"></code></pre>
+
+<script>
+// Supongamos que el texto y el código están en una variable
+var contenido = `
+\`\`\`python
+def my_function():
+    # code to be executed when the function is called
+    pass
+\`\`\`
+This is a basic Python function that can be customized according to your needs. 
+You can add or remove code blocks, and specify the parameters and return values as necessary.
+If you have any specific requirements for the function, please let me know so I can provide a more detailed response.
+`;
+
+// Separamos el contenido en líneas
+var lineas = contenido.split('\n');
+
+// Inicializamos variables para almacenar el texto y el código
+var texto = '';
+var codigo = '';
+var bloqueCodigo = false;
+
+// Iteramos sobre las líneas para clasificar el contenido
+for (var i = 0; i < lineas.length; i++) {
+    if (lineas[i].startsWith('```')) {
+        // Cambio de bloque de código
+        bloqueCodigo = !bloqueCodigo;
+
+        // Si estamos empezando un bloque de código, agregamos un salto de línea
+        if (bloqueCodigo) {
+            codigo += '\n';
+        }
+    } else {
+        // Agregamos el contenido de la línea según si estamos en un bloque de código o no
+        if (bloqueCodigo) {
+            codigo += lineas[i] + '\n';
+        } else {
+            texto += lineas[i] + '\n';
+        }
+    }
+}
+
+// Mostramos el resultado en las etiquetas respectivas
+document.getElementById('textoContainer').innerText = texto.trim();
+document.getElementById('codigoContainer').innerText = codigo.trim();
+</script>
+
+</body>
+</html>
